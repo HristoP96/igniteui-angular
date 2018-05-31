@@ -7,17 +7,14 @@
                     "description": "Name of the class to change",
                     "type": "string"
                 },
-                "remove": {
-                    "description": "Remove directive/component",
-                    "type": "boolean"
-                },
                 "replaceWith": {
-                    "description": "Replace original selector with new one",
+                    "description": "Replace original name with new one",
                     "type": "string"
                 }
             },
             "required": [
-                "name"
+                "name",
+                "replaceWith"
             ],
             "type": "object"
         }

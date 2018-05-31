@@ -1,5 +1,5 @@
 // generate schema:
-// npx typescript-json-schema migrations/common/schema/index.ts SelectorChanges -o migrations/common/schema/selectors.schema.json --required
+// npx typescript-json-schema migrations/common/schema/index.ts SelectorChanges -o migrations/common/schema/selector.schema.json --required
 
 // tslint:disable:interface-name
 export interface SelectorChanges {
@@ -23,9 +23,11 @@ export interface ClassChanges {
     /** An array of changes to output properties */
     changes: ClassChange[];
 }
-export interface ClassChange extends ChangeAction {
+export interface ClassChange {
     /** Name of the class to change */
     name: string;
+    /** Replace original name with new one */
+    replaceWith: string;
 }
 
 interface ChangeAction {

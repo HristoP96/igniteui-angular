@@ -40,3 +40,20 @@ export function getIdentifierPositions(sourceText: string, name: string): Array<
     source.forEachChild(findIdentifiers);
     return positions;
 }
+
+/** Returns the positions of import from module string literals  */
+export function getImportModulePositions(sourceText: string, startsWith: string): Array<{start: number, end: number}> {
+    const source = ts.createSourceFile("", sourceText, ts.ScriptTarget.Latest, true);
+    const positions = [];
+
+    for (const statement of source.statements) {
+        if (statement.kind === ts.SyntaxKind.ImportDeclaration) {
+            const specifier =  (statement as ts.ImportDeclaration).moduleSpecifier as ts.StringLiteral;
+            if (specifier.text.startsWith(startsWith)) {
+                // string literal pos will include quotes, trim with 1
+                positions.push({ start: specifier.getStart() + 1, end: specifier.end - 1 });
+            }
+        }
+    }
+    return positions;
+}

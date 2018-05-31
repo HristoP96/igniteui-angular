@@ -26,9 +26,6 @@ describe("Update 6.0.0", () => {
       };
 
     beforeEach(() => {
-        // host = new virtualFs.test.TestHost({
-        //   "/angular.json": JSON.stringify(configJson)
-        // });
         appTree = new UnitTestTree(new EmptyTree());
         appTree.create("/angular.json", JSON.stringify(configJson));
     });
